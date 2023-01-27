@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -40,7 +42,8 @@ th {
   color: #f2f2f2;
 }
 
-th, td {
+th,
+td {
   padding: 0.5rem;
 }
 
@@ -51,15 +54,33 @@ th, td {
 }
 
 .btn-delete {
-  background-color: #EA2027;
+  background-color: #ea2027;
 }
 .btn-delete a {
   color: #f2f2f2;
 }
 
 .btn-update {
-  background-color: #0652DD;
+  background-color: #0652dd;
 }
 .btn-update a {
   color: #f2f2f2;
+}
+
+form {
+  background-color: #003266;
+  color: #f2f2f2;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  width: 80%;
+}
+form input {
+  border-radius: 10px;
+  outline: none;
+  padding: 0.2rem 0.5rem;
+  border: none;
 }/*# sourceMappingURL=main.css.map */

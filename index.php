@@ -12,7 +12,7 @@ try {
 }
 ?>
 <head>
-    <link rel="stylesheet" href="./main/main.css">
+    <link rel="stylesheet" href="./media/main.css">
 </head>
 <main>
     <table>
