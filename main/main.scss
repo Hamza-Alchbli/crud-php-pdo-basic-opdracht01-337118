@@ -17,3 +17,44 @@
     padding: 0;
     box-sizing: border-box;
 }
+a {
+    color: black;
+    text-decoration: none;
+}
+body {
+    background-color: #2c3e50;
+}
+main {
+    @include flexCenter();
+    height: 100%;
+}
+table {
+    border-collapse: collapse;
+}
+tr:not(:first-child){
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #2c3e50;
+}
+tr:first-child {
+    background-color: #130f40;
+    border-radius: 10px 10px 0 0 ;
+}
+th {
+    color: #f2f2f2;
+}
+th,td {
+    padding: .5rem;
+}
+.btn {
+    padding: .6rem .8rem;
+    outline: none;
+    border: none;
+}
+.btn-delete {
+    background-color: #EA2027 ;
+    a {color: #f2f2f2;} 
+}
+.btn-update {
+    background-color: #0652DD ;
+    a {color: #f2f2f2;}
+}
