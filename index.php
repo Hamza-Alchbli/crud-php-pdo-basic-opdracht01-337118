@@ -42,11 +42,12 @@ try {
                 <td><?= htmlspecialchars($row["Postalcode"])?></td>
                 <td><?= htmlspecialchars($row["Land"])?></td>
                 <td>
-                    <button class="btn btn-delete" ><a href="delete.php?deleteid=<?= $row['Id']?>" >Delete</a></button>
                     <button class="btn btn-update"><a href="delete.php?updateid=<?= $row['Id']?>" >Update</a></button>
+                    <button class="btn btn-delete" ><a href="delete.php?deleteid=<?= $row['Id']?>" >Delete</a></button>
                 </td>
             </tr>
         <?php endwhile ?>
             
     </table>
+        <button class="btn"><a href="create.php">Create New record</a></button>
 </main>
