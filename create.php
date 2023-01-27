@@ -4,7 +4,8 @@ require_once "connect.php";
 
 
 
-if (isset($_POST['submit'])) { //check if form was submitted
+if (isset($_POST['submit'])) {
+    //check if form was submitted
     $naam = $_POST['naam'];
     $tussenvoegsel = $_POST['tussenvoegsel'];
     $achternaam = $_POST['achternaam'];
@@ -15,18 +16,51 @@ if (isset($_POST['submit'])) { //check if form was submitted
     $woonplaats = $_POST['woonplaats'];
     $postcode = $_POST['postcode'];
     $landnaam = $_POST['landnaam'];
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "INSERT INTO `Persoon` (Firstname, Infix, Lastname, Haircolor, Phone, Streetname, Huisnumber, City, Postalcode, Land)
-        VALUES ('$naam', '$tussenvoegsel', '$achternaam','$haarkleur', '$telefoonnummer', '$straatnaam','$huisnummer', '$woonplaats', '$postcode', '$landnaam')";
-        // use exec() because no results are returned
-        $conn->exec($sql);
-        echo "New record created successfully";
-        header('Location: index.php');
-    } catch (PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+
+    $sql = "INSERT INTO `Persoon` 
+                            (Firstname, 
+                            Infix, 
+                            Lastname, 
+                            Haircolor, 
+                            Phone, 
+                            Streetname, 
+                            Huisnumber, 
+                            City, 
+                            Postalcode, 
+                            Land)
+                VALUES      (:Firstname, 
+                            :Infix, 
+                            :Lastname, 
+                            :Haircolor, 
+                            :Phone, 
+                            :Streetname, 
+                            :Huisnumber, 
+                            :City, 
+                            :Postalcode, 
+                            :Land)";
+    // We bereiden de sql-query voor met de method prepare
+    $statement = $pdo->prepare($sql);
+
+    $statement->bindValue(':Firstname', $naam, PDO::PARAM_STR);
+    $statement->bindValue(':Infix', $tussenvoegsel, PDO::PARAM_STR);
+    $statement->bindValue(':Lastname', $achternaam, PDO::PARAM_STR);
+    $statement->bindValue(':Haircolor',  $haarkleur, PDO::PARAM_STR);
+    $statement->bindValue(':Phone', $telefoonnummer, PDO::PARAM_STR);
+    $statement->bindValue(':Streetname', $straatnaam, PDO::PARAM_STR);
+    $statement->bindValue(':Huisnumber', $huisnummer, PDO::PARAM_STR);
+    $statement->bindValue(':City', $woonplaats, PDO::PARAM_STR);
+    $statement->bindValue(':Postalcode', $postcode, PDO::PARAM_STR);
+    $statement->bindValue(':Land', $landnaam, PDO::PARAM_STR);
+
+    // We vuren de sql-query af op de database
+    $result = $statement->execute();
+
+    if ($result) {
+        echo "Er is een nieuw record gemaakt in de database.";
+        header('Refresh:2; url=index.php');
+    } else {
+        echo "Er is geen nieuw record gemaakt.";
+        header('Refresh:2; url=index.php');
     }
 }
 ?>
