@@ -65,7 +65,6 @@ try {
                 </td>
             </tr>
         <?php endwhile ?>
-
     </table>
     <button class="btn"><a href="create.php">Create New record</a></button>
 </main>
