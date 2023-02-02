@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
                             :Land)";
     // We bereiden de sql-query voor met de method prepare
     $statement = $pdo->prepare($sql);
-
+    // bindvalue 
     $statement->bindValue(':Firstname', $naam, PDO::PARAM_STR);
     $statement->bindValue(':Infix', $tussenvoegsel, PDO::PARAM_STR);
     $statement->bindValue(':Lastname', $achternaam, PDO::PARAM_STR);
